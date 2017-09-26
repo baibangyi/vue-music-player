@@ -9,7 +9,7 @@
       class="list-group" 
       ref="listGroup">
         <h2 class="list-group-title">{{group.title}}</h2>
-  			<ul>
+    		<ul>
   				<li v-for="item in group.items" class="list-group-item">
   					<img class="avatar" v-lazy="item.avatar"/>
   					<span class="name">{{item.name}}</span>
@@ -17,7 +17,9 @@
   			</ul>
   		</li>
   	</ul>
-  	<div class="list-shortcut" @touchstart.stop.prevent="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
+  	<div class="list-shortcut" 
+  	@touchstart.stop.prevent="onShortcutTouchStart" 
+  	@touchmove.stop.prevent="onShortcutTouchMove">
   		<ul>
   			<li v-for="(item, index) in shortcutList" 
   			class="item" 
@@ -27,20 +29,31 @@
   			</li>
   		</ul>
   	</div>
+  	<div class="list-fixed" v-show="fixedTitle" ref="fixed">
+  		<h1 class="fixed-title">
+  			{{fixedTitle}}
+  		</h1>
+  	</div>
+  	<div v-show="!data.length" class="loading-container">
+  		<loading></loading>
+  	</div>
   </scroll>
 </template>
 
 <script type="text/ecmascript-6">
   import Scroll from 'base/scroll/scroll'
   import {getData} from 'common/js/dom'
+  import Loading from 'base/loading/loading'
 
   const ANCHOR_HEIGHT = 18
+  const TITLE_HEIGHT = 30
 
   export default {
     data() {
       return {
         scrollY: -1,
-        currentIndex: 0
+        currentIndex: 0,
+        diff: -1
       }
     },
     created() {
@@ -60,6 +73,12 @@
         return this.data.map((group) => {
           return group.title.substr(0, 1)
         })
+      },
+      fixedTitle() {
+        if (this.scrollY > 0) {
+          return ''
+        }
+        return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
       }
     },
     methods: {
@@ -122,14 +141,24 @@
           let height2 = listHeight[i + 1]
           if (-newY >= height1 && -newY < height2) {
             this.currentIndex = i
+            this.diff = height2 + newY
             return
           }
         }
         this.currentIndex = listHeight.length - 2
+      },
+      diff(newVal) {
+        let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+        if (this.fixedTop === fixedTop) {
+          return
+        }
+        this.fixedTop = fixedTop
+        this.$refs.fixed.style.transform = `translate3d(0, ${fixedTop}px, 0)`
       }
     },
     components: {
-      Scroll
+      Scroll,
+      Loading
     }
   }
 </script>
