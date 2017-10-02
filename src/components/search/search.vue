@@ -4,20 +4,36 @@
       <search-box ref="searchBox" @query="onQueryChange"></search-box>
   	</div>
 		<div class="shortcut-wrapper" v-show="!query">
-      <div class="shortcut">
-        <div class="hot-key">
-          <h1 class="title">热门搜索</h1>
-          <ul>
-          	<li @click="addQuery(item.k)" class="item" v-for="item in hotKey">
-          		<span>{{item.k}}</span>
-          	</li>
-          </ul>
+      <scroll class="shortcut" :data="shortcut">
+        <div>
+          <div class="hot-key">
+            <h1 class="title">热门搜索</h1>
+            <ul>
+            	<li @click="addQuery(item.k)" class="item" v-for="item in hotKey">
+            		<span>{{item.k}}</span>
+            	</li>
+            </ul>
+          </div>
+          <div class="search-history" v-show="searchHistory.length">
+            <h1 class="title">
+              <span class="text">搜索历史</span>
+              <span class="clear" @click="showConfirm">
+                <i class="icon-clear"></i>
+              </span>
+            </h1>
+            <search-list @select="addQuery" @delete="deleteSearchHistory" :searches="searchHistory"></search-list>
+          </div>
         </div>
-      </div>
+      </scroll>
 		</div>
     <div class="search-result" v-show="query">
       <suggest @select="saveSearch" @listScroll="blurInput" :query="query"></suggest>
     </div>
+    <confirm 
+    ref="confirm" 
+    text="是否清空所有历史"
+    confirmBtnText="清空"
+    @confirm="clearSearchHistory"></confirm>
     <router-view></router-view>
 	</div>
 </template>
@@ -27,8 +43,10 @@
   import {getHotKey} from 'api/search'
   import {ERR_OK} from 'api/config'
   import Suggest from 'components/suggest/suggest'
-  import {mapActions} from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
   import SearchList from 'base/search-list/search-list'
+  import Confirm from 'base/confirm/confirm'
+  import Scroll from 'base/scroll/scroll'
 
   export default {
     data() {
@@ -38,6 +56,9 @@
       }
     },
     computed: {
+      shortcut() {
+        return this.hotKey.concat(this.searchHistory)
+      },
       ...mapGetters([
         'searchHistory'
       ])
@@ -64,12 +85,22 @@
       },
       saveSearch() {
         this.saveSearchHistory(this.query)
-      }
+      },
+      showConfirm() {
+        this.$refs.confirm.show()
+      },
+      ...mapActions([
+        'saveSearchHistory',
+        'deleteSearchHistory',
+        'clearSearchHistory'
+      ])
     },
     components: {
       SearchBox,
       Suggest,
-      SearchList
+      SearchList,
+      Confirm,
+      Scroll
     }
   }
 </script>
