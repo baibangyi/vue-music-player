@@ -6,6 +6,9 @@ const SEARCH_MAX_LENGTH = 15
 const PLAY_KEY = '_play_'
 const PLAY_MAX_LENGTH = 200
 
+const FACORITE_KEY = '_favorite_'
+const FACORITE_MAX_LENGTH = 200
+
 function insertArray(arr, val, compare, maxLen) {
   const index = arr.findIndex(compare)
   if (index === 0) {
@@ -65,4 +68,26 @@ export function savePlay(song) {
 
 export function loadPlay() {
   return storage.get(PLAY_KEY, [])
+}
+
+export function saveFavorite(song) {
+  let songs = storage.get(FACORITE_KEY, [])
+  insertArray(songs, song, (item) => {
+    return song.id === item.id
+  }, FACORITE_MAX_LENGTH)
+  storage.set(FACORITE_KEY, songs)
+  return songs
+}
+
+export function deleteFavorite(song) {
+  let songs = storage.get(FACORITE_KEY, [])
+  deleteFromArray(songs, (item) => {
+    return song.id === item.id
+  })
+  storage.set(FACORITE_KEY, songs)
+  return songs
+}
+
+export function loadFavorite() {
+  return storage.get(FACORITE_KEY, [])
 }
