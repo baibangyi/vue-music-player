@@ -10,6 +10,7 @@ function findIndex(list, song) {
 }
 
 export const selectPlay = function ({commit, state}, {list, index}) {
+  //选择播放模式后，定义播放列表的歌曲顺序
   commit(types.SET_SEQUENCE_LIST, list)
   if (state.mode === playMode.random) {
     let randomList = shuffle(list)
@@ -24,6 +25,7 @@ export const selectPlay = function ({commit, state}, {list, index}) {
 }
 
 export const randomPlay = function ({commit}, {list}) {
+  //选择随机播放模式时，打乱播放歌曲顺序
   commit(types.SET_PLAY_MODE, playMode.random)
   commit(types.SET_SEQUENCE_LIST, list)
   let randomList = shuffle(list)
@@ -34,6 +36,7 @@ export const randomPlay = function ({commit}, {list}) {
 }
 
 export const insertSong = function({commit, state}, song) {
+  //在现有的播放列表中插入歌曲
   let playlist = state.playlist.slice()
   let sequenceList = state.sequenceList.slice()
   let currentIndex = state.currentIndex
@@ -71,18 +74,22 @@ export const insertSong = function({commit, state}, song) {
 }
 
 export const saveSearchHistory = function({commit}, query) {
+  //本地保存搜索数据
   commit(types.SET_SEARCH_HISTORY, saveSearch(query))
 }
 
 export const deleteSearchHistory = function({commit}, query) {
+  //本地删除已有的搜索历史
   commit(types.SET_SEARCH_HISTORY, deleteSearch(query))
 }
 
 export const clearSearchHistory = function({commit}) {
+  //本地清空所有搜索历史
   commit(types.SET_SEARCH_HISTORY, clearSearch())
 }
 
 export const deleteSong = function({commit, state}, song) {
+  //点击删除icon，删除歌曲
   let playlist = state.playlist.slice()
   let sequenceList = state.sequenceList.slice()
   let currentIndex = state.currentIndex
@@ -112,13 +119,16 @@ export const deleteSongList = function({commit}) {
 }
 
 export const savePlayHistory = function({commit}, song) {
+  //本地存储最近播放记录
   commit(types.SET_PLAY_HISTORY, savePlay(song))
 }
 
 export const saveFavoriteList = function({commit}, song) {
+  //本地存储收藏列表歌曲
   commit(types.SET_FAVORITE_LIST, saveFavorite(song))
 }
 
 export const deleteFavoriteList = function({commit}, song) {
+  //删除收藏歌单歌曲
   commit(types.SET_FAVORITE_LIST, deleteFavorite(song))
 }

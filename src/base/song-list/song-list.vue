@@ -33,6 +33,7 @@
       getDesc(song) {
         return `${song.singer}·${song.album}`
       },
+      //排行榜前三名与非前三名左侧icon的控制
       getRankCls(index) {
         if (index <= 2) {
           return `icon icon${index}`

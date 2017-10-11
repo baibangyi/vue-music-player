@@ -30,6 +30,7 @@ export default class Song {
   }
 }
 
+//格式化返回的歌曲数据
 export function createSong(musicData) {
   return new Song({
     id: musicData.songid,

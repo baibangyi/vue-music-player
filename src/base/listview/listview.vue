@@ -89,6 +89,7 @@
       selectItem(item) {
         this.$emit('select', item)
       },
+      //实现歌手页面右侧字母索引控制歌手列表的滚动
       onShortcutTouchStart(e) {
         let anchorIndex = getData(e.target, 'index')
         let firstTouch = e.touches[0]
@@ -154,6 +155,7 @@
         }
         this.currentIndex = listHeight.length - 2
       },
+      //实现字母标题滚动到顶部将重合时向上滑动的效果
       diff(newVal) {
         let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
         if (this.fixedTop === fixedTop) {
