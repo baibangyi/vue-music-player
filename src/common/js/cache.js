@@ -40,6 +40,7 @@ export function saveSearch(query) {
 }
 
 export function loadSearch() {
+  //获取本地存储，在state中初始化searchHistory
   return storage.get(SEARCH_KRY, [])
 }
 
@@ -67,6 +68,7 @@ export function savePlay(song) {
 }
 
 export function loadPlay() {
+  //获取本地存储，在state中初始化playHistory
   return storage.get(PLAY_KEY, [])
 }
 
@@ -89,5 +91,6 @@ export function deleteFavorite(song) {
 }
 
 export function loadFavorite() {
+  //获取本地存储，在state中初始化favoriteList
   return storage.get(FACORITE_KEY, [])
 }
