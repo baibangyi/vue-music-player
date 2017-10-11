@@ -1,6 +1,7 @@
 ﻿# 基于vue开发移动端音乐App课程总结
 [toc]
 ##效果图
+![Image text]![此处输入图片的描述][1] | ![此处输入图片的描述][2]| ![此处输入图片的描述][3] | ![此处输入图片的描述][4] | ![此处输入图片的描述][5] | ![此处输入图片的描述][6] | ![此处输入图片的描述][7] | ![此处输入图片的描述][8]
 ##vue知识点概述
 ###什么是vue.js
 1. 采用自底向上增量开发设计轻量级MVVM框架
@@ -15,14 +16,14 @@
 
 > Vue是一种MVVM框架。而DOM是数据的一个种自然映射。传统的模式是通过Ajax请求从model请求数据，然后手动的触发DOM传入数据修改页面。Vue中，Directives对view进行了封装，当model里的数据发生变化是，Vue就会通过Directives指令去修改DOM。同时也通过DOM Listener实现对视图view的监听，当DOM改变时，就会被监听到，实现model的改变，实现数据的双向绑定。
 
-![Image text]![此处输入图片的描述][2]
+![Image text]![此处输入图片的描述][9]
 
 
 2.组件化
 
 > 组件化实现了扩展HTML元素，封装可用的代码。页面上每个独立的可视/可交互区域视为一个组件；每个组件对应一个工程目录，组件所需要的各种资源在这个目录下就近维护；页面不过是组件的容器，组件可以嵌套自由组合形成完整的页面
 
-![Image text]![此处输入图片的描述][3]
+![Image text]![此处输入图片的描述][10]
 
 
 ##vuex
@@ -123,12 +124,12 @@ actions也可以用于改变状态，mutations只能实现同步更改，但acti
     
 ##**better-scroll**
 ###**什么是better-scroll**
-better-scroll 是一款重点解决移动端各种滚动场景需求的插件，是基于原生 JS 实现的，不依赖任何框架，在[这里][4]可以详细学习better-scroll
+better-scroll 是一款重点解决移动端各种滚动场景需求的插件，是基于原生 JS 实现的，不依赖任何框架，在[这里][11]可以详细学习better-scroll
 
 
 ###**滚动原理**
 父容器固定高度，并设置属性overflow:hidden，使得子元素高度超出容器后能被隐藏，当我们的视口展示不下内容的时候，会通过滚动条的方式让用户滚动屏幕看到剩余的内容
-![Image text]![此处输入图片的描述][5]
+![Image text]![此处输入图片的描述][12]
 
 ###**Options 参数**
 
@@ -143,7 +144,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
 
 >   - snapLoop: false 是否可以无缝循环轮播
 
->   - 详见[better-scroll官方文档][6]
+>   - 详见[better-scroll官方文档][13]
 
 ###**Events 事件**
 
@@ -206,7 +207,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
       </div>
     </template>
     
-再进行js的编写(详见[此处][7]），eg：
+再进行js的编写(详见[此处][14]），eg：
 
     <script type="text/ecmascript-6">
       import BScroll from 'better-scroll'
@@ -318,7 +319,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
 > Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站
 
 ####**Express原理**
-[Express框架][8]建立在node.js内置的http模块上，等于在http模块之上，加了一个中间件处理HTTP请求的函数，向响应头里添加一些东西，干掉同源策略，eg：
+[Express框架][15]建立在node.js内置的http模块上，等于在http模块之上，加了一个中间件处理HTTP请求的函数，向响应头里添加一些东西，干掉同源策略，eg：
 
     var app = express()
     
@@ -525,10 +526,17 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
 
 
   [1]: http://otn4yvz23.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171011211330.jpg
-  [2]: http://img.blog.csdn.net/20170217105047104?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTFiMjU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center
-  [3]: http://img.blog.csdn.net/20170217105324962?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTFiMjU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center
-  [4]: https://ustbhuangyi.github.io/better-scroll/#/zh
-  [5]: http://static.galileo.xiaojukeji.com/static/tms/shield/scroll-4.png
-  [6]: https://ustbhuangyi.github.io/better-scroll/#/
-  [7]: https://zhuanlan.zhihu.com/p/27407024
-  [8]: http://www.cnblogs.com/mq0036/p/5243312.html#toc0
+  [2]: http://otn4yvz23.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171011212024.png
+  [3]: http://otn4yvz23.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171011212020.png
+  [4]: http://otn4yvz23.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171011212014.png
+  [5]: http://otn4yvz23.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171011212009.jpg
+  [6]: http://otn4yvz23.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171011211942.jpg
+  [7]: http://otn4yvz23.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171011211935.png
+  [8]: http://otn4yvz23.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171011212004.png
+  [9]: http://img.blog.csdn.net/20170217105047104?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTFiMjU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center
+  [10]: http://img.blog.csdn.net/20170217105324962?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTFiMjU1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center
+  [11]: https://ustbhuangyi.github.io/better-scroll/#/zh
+  [12]: http://static.galileo.xiaojukeji.com/static/tms/shield/scroll-4.png
+  [13]: https://ustbhuangyi.github.io/better-scroll/#/
+  [14]: https://zhuanlan.zhihu.com/p/27407024
+  [15]: http://www.cnblogs.com/mq0036/p/5243312.html#toc0
