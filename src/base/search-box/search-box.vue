@@ -29,12 +29,10 @@
         this.query = query
       },
       blur() {
-        //使搜索框失去焦点
         this.$refs.query.blur()
       }
     },
     created() {
-      //实时监听搜索框内容的变化，并映射
       this.$watch('query', debounce((newQuery) => {
         this.$emit('query', newQuery)
       }, 200))

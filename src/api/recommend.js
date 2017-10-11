@@ -3,7 +3,6 @@ import {commonParams, options} from './config'
 import axios from 'axios'
 
 export function getRecommend() {
-  //获取推荐轮播数据的api
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
   const data = Object.assign({}, commonParams, {
     platform: 'h5',
@@ -14,7 +13,6 @@ export function getRecommend() {
 }
 
 export function getDiscList() {
-  //获取热门推荐歌单的api
   const url = '/api/getDiscList'
 
   const data = Object.assign({}, commonParams, {
@@ -37,7 +35,6 @@ export function getDiscList() {
 }
 
 export function getSongList(disstid) {
-  //获取热门推荐歌单详情页的数据
   const url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
 
   const data = Object.assign({}, commonParams, {

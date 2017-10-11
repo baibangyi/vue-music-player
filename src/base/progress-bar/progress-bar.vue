@@ -30,7 +30,6 @@
       this.touch = {}
     },
     methods: {
-      //监听进度条的拖动
       progressTouchStart(e) {
         this.touch.initiated = true
         this.touch.startX = e.touches[0].pageX
@@ -49,7 +48,6 @@
         this._triggerPercent()
       },
       progressClick(e) {
-        //监听进度条的点击位置
         const rect = this.$refs.progressBar.getBoundingClientRect()
         const offsetWidth = e.pageX - rect.left
         this._offset(offsetWidth)

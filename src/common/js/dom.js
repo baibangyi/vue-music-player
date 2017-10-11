@@ -25,7 +25,6 @@ export function getData(el, name, val) {
 
 let elementStyle = document.createElement('div').style
 
-//兼容各浏览器
 let vendor = (() => {
   let transformNames = {
     webkit: 'webkitTransform',
@@ -44,7 +43,6 @@ let vendor = (() => {
   return false
 })()
 
-//根据不同浏览器使用不同样式
 export function prefixStyle(style) {
   if (vendor === false) {
     return false

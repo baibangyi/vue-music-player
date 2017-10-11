@@ -10,5 +10,4 @@ export const options = {
   param: 'jsonpCallback'
 }
 
-//当数据返回成功的标志
 export const ERR_OK = 0

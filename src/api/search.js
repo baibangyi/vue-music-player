@@ -2,7 +2,6 @@ import jsonp from 'common/js/jsonp'
 import {commonParams, options} from './config'
 
 export function getHotKey() {
-  //获取热门搜索的api
   const url = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'
 
   const data = Object.assign({}, commonParams, {
@@ -15,7 +14,6 @@ export function getHotKey() {
 }
 
 export function search(query, page, zhida, perpage) {
-  //获取搜索结果的api
   const url = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp'
 
   const data = Object.assign({}, commonParams, {

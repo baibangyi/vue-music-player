@@ -205,7 +205,6 @@
           this.togglePlaying()
         }
         if (this.currentLyric) {
-          //使歌词跳转到当前播放的时间点
           this.currentLyric.seek(currentTime * 1000)
         }
       },
@@ -217,15 +216,12 @@
         this.songReady = true
       },
       back() {
-        //返回到歌手页面，显示迷你播放器
         this.setFullScreen(false)
       },
       open() {
-        //打开全拼播放器
         this.setFullScreen(true)
       },
       end() {
-        //绑定在adius上，控制下手歌的播放
         if (this.mode === playMode.loop) {
           this.loop()
         } else {
@@ -233,7 +229,6 @@
         }
       },
       loop() {
-        //循环模式下切换歌曲时，重置歌曲数据
         this.$refs.audio.currentTime = 0
         this.$refs.audio.play()
         if (this.currentLyric) {
@@ -241,7 +236,6 @@
         }
       },
       enter(el, done) {
-        //迷你播放器到全屏播放器的转换
         const {x, y, scale} = this._getPosAndScale()
 
         let animation = {
@@ -270,7 +264,6 @@
         this.$refs.cdWrapper.style.animation = ''
       },
       leave(el, done) {
-        //全屏播放器缩小为迷你播放器
         this.$refs.cdWrapper.style.transition = 'all 0.4s'
         const {x, y, scale} = this._getPosAndScale()
         this.$refs.cdWrapper.style[transform] = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
@@ -308,14 +301,12 @@
         this.currentTime = e.target.currentTime
       },
       format(interval) {
-        //获取播放时间或总时间后，将时间戳转化为分秒格式
         interval = interval | 0
         const minute = interval / 60 | 0
         const second = this._pad(interval % 60)
         return `${minute}:${second}`
       },
       getLyric() {
-        //获取播放歌曲的歌词
         this.currentSong.getLyric().then((lyric) => {
           if (this.currentSong.lyric !== lyric) {
             return
@@ -331,7 +322,6 @@
         })
       },
       handleLyric({lineNum, txt}) {
-        //使播放列表的歌词显示只显示五行，大于5时，就滚动到正在播放的歌词
         this.currentLineNum = lineNum
         if (lineNum > 5) {
           let lineEl = this.$refs.lyricLine[lineNum - 5]
@@ -356,7 +346,6 @@
         this.touch.startY = touch.pageY
       },
       middleTouchMove(e) {
-        //实现播放器页面和歌词页面的转换
         if (!this.touch.initiated) {
           return
         }
@@ -375,7 +364,6 @@
         this.$refs.middleL.style[transitionDuration] = 0
       },
       middleTouchEnd() {
-        //控制歌词和播放器页面的显示，并控制清晰度
         let offsetWidth
         let opacity
         if (this.currentShow === 'cd') {
@@ -405,7 +393,6 @@
         this.$refs.middleL.style[transitionDuration] = `${time}ms`
       },
       showPlaylist() {
-        //点击列表icon时，显示playlist页面
         this.$refs.playlist.show()
       },
       ...mapMutations({

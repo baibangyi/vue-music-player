@@ -57,7 +57,6 @@
     },
     methods: {
       _setSliderWidth(isResize) {
-        //计算轮播的宽度
         this.children = this.$refs.sliderGroup.children
 
         let width = 0
@@ -75,7 +74,6 @@
         this.$refs.sliderGroup.style.width = width + 'px'
       },
       _initSlider() {
-        //初始化轮播数据
         this.slider = new BScroll(this.$refs.slider, {
           scrollX: true,
           scrollY: false,
@@ -100,11 +98,9 @@
         })
       },
       _initDots() {
-        //初始化轮播下方的索引
         this.dots = new Array(this.children.length - 2)
       },
       _play() {
-        //控制轮播图的播放
         let PageIndex = this.currentPageIndex + 1
 
         if (this.loop) {

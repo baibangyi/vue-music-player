@@ -19,7 +19,6 @@
       }
     },
     methods: {
-      //实现tab键的切换
       switchItem(index) {
         this.$emit('switch', index)
       }

@@ -45,7 +45,6 @@
     },
     methods: {
       _initScroll() {
-        //初始化scroll组件
         if (!this.$refs.wrapper) {
           return
         }
