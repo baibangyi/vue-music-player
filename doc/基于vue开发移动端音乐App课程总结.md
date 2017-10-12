@@ -1,17 +1,17 @@
 ﻿# 基于vue开发移动端音乐App课程总结
 [toc]
 ##效果图
-![Image text]![此处输入图片的描述][1] | ![此处输入图片的描述][2]| ![此处输入图片的描述][3] | ![此处输入图片的描述][4] | ![此处输入图片的描述][5] | ![此处输入图片的描述][6] | ![此处输入图片的描述][7] | ![此处输入图片的描述][8]
+![此处输入图片的描述][1]![此处输入图片的描述][2]![此处输入图片的描述][3]![此处输入图片的描述][4]![此处输入图片的描述][5]![此处输入图片的描述][6] ![此处输入图片的描述][7]![此处输入图片的描述][8]
 ##vue知识点概述
-###什么是vue.js
+### 什么是vue.js
 1. 采用自底向上增量开发设计轻量级MVVM框架
 2. 数据驱动+组件化的前端框架
 
-###vue.js的优势
+### vue.js的优势
 1.Vue.js更轻量，gzip只有20k的大小。比其他两种框架小了一半还多
 2.相较于其他前端框架，更易上手
 
-###核心思想
+### 核心思想
 1.数据驱动——双向绑定
 
 > Vue是一种MVVM框架。而DOM是数据的一个种自然映射。传统的模式是通过Ajax请求从model请求数据，然后手动的触发DOM传入数据修改页面。Vue中，Directives对view进行了封装，当model里的数据发生变化是，Vue就会通过Directives指令去修改DOM。同时也通过DOM Listener实现对视图view的监听，当DOM改变时，就会被监听到，实现model的改变，实现数据的双向绑定。
@@ -23,15 +23,15 @@
 
 > 组件化实现了扩展HTML元素，封装可用的代码。页面上每个独立的可视/可交互区域视为一个组件；每个组件对应一个工程目录，组件所需要的各种资源在这个目录下就近维护；页面不过是组件的容器，组件可以嵌套自由组合形成完整的页面
 
-![Image text]![此处输入图片的描述][10]
+![此处输入图片的描述][10]
 
 
-##vuex
-###什么是vuex
+## vuex
+### 什么是vuex
 1.官方说法：vuex是Vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化
 2.个人理解：vuex是用来管理组件之间通信的一个插件，在项目结构较复杂，组件通信频繁时调用
 
-###注册vuex
+### 注册vuex
 vuex一般有个入口文件index.js，用于注册vuex，实例化生成store，并导出store，eg：
 
     import Vue from 'vue'
@@ -55,8 +55,8 @@ vuex一般有个入口文件index.js，用于注册vuex，实例化生成store�
       plugins: debug ? [createLogger()] : []
     })
 
-###核心概念
-####**state**
+### 核心概念
+#### **state**
 负责存储整个应用的状态数据，一般需要在使用的时候在跟节点注入store对象，后期就可以使用this.$store.state直接获取状态，也可以利用vuex提供的mapState辅助函数将state映射到计算属性中去，eg：
 
     //我是组件
@@ -67,7 +67,7 @@ vuex一般有个入口文件index.js，用于注册vuex，实例化生成store�
       })
     }
 
-####**mutations（同步）**
+#### **mutations（同步）**
 本质就是用来处理数据的函数，其接收唯一参数值state，利用它可以更改状态，vuex提供辅助函数mapMutations直接将触发函数映射到methods上，这样就能在元素事件绑定上直接使用了，eg：
 
     import {mapMutations} from 'vuex'
@@ -79,7 +79,7 @@ vuex一般有个入口文件index.js，用于注册vuex，实例化生成store�
       ])
     }
 
-####**actions**
+#### **actions**
 actions也可以用于改变状态，mutations只能实现同步更改，但actions可以实现异步更改状态的操作， eg：
 
     //定义Actions
@@ -101,7 +101,7 @@ actions也可以用于改变状态，mutations只能实现同步更改，但acti
       ])
     }
 
-####**getters**
+#### **getters**
 相当于vuex中计算属性，对数据做二次处理，vuex提供辅助函数mapGetters将其映射到本地计算属性中去，eg：
 
     import {mapGetters} from 'vuex'
@@ -113,7 +113,7 @@ actions也可以用于改变状态，mutations只能实现同步更改，但acti
       ])
     }
 
-###**Plugins插件**
+### **Plugins插件**
 插件就是一个钩子函数，在初始化store的时候引入即可。比较常用的是内置的logger插件，用于作为调试使用，eg：
 
     import createLogger from 'vuex/dist/logger'
@@ -122,16 +122,16 @@ actions也可以用于改变状态，mutations只能实现同步更改，但acti
       plugins: [createLogger()]
     })
     
-##**better-scroll**
-###**什么是better-scroll**
+## **better-scroll**
+### **什么是better-scroll**
 better-scroll 是一款重点解决移动端各种滚动场景需求的插件，是基于原生 JS 实现的，不依赖任何框架，在[这里][11]可以详细学习better-scroll
 
 
-###**滚动原理**
+### **滚动原理**
 父容器固定高度，并设置属性overflow:hidden，使得子元素高度超出容器后能被隐藏，当我们的视口展示不下内容的时候，会通过滚动条的方式让用户滚动屏幕看到剩余的内容
-![Image text]![此处输入图片的描述][12]
+![此处输入图片的描述][12]
 
-###**Options 参数**
+### **Options 参数**
 
 >   - probeType
 >  -  1 滚动的时候会派发scroll事件，会截流
@@ -146,7 +146,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
 
 >   - 详见[better-scroll官方文档][13]
 
-###**Events 事件**
+### **Events 事件**
 
 >  - beforeScrollStart - 滚动开始之前触发
 
@@ -167,7 +167,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
 >  - destroy - 销毁 better-scroll 实例时触发
 
 
-###**函数列表**
+### **函数列表**
 
 >   - scrollTo(x, y, time, easing)
 >  - 滚动到某个位置，x,y 代表坐标，time 表示动画时间，easing 表示缓动函数 scroll.scrollTo(0, 500)
@@ -197,8 +197,8 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
  
   
  
-###**vue碰见bette-scroll**
-####**scroll 组件的抽象和封装**
+### **vue碰见bette-scroll**
+#### **scroll 组件的抽象和封装**
 利用vue的slot插槽，灵活指定scroll组件的DOM 结构，eg：
 
     <template>
@@ -235,7 +235,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
     </script>
 
 
-####**scroll组件的引用**
+#### **scroll组件的引用**
 只需在其他组件import scroll 组件即可，并传入所需props
 
     <template>
@@ -261,16 +261,16 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
         }
       }
       
-##**跨域请求音乐数据**
-###**jsonp方式**
-####**什么是jsonp**
+## **跨域请求音乐数据**
+### **jsonp方式**
+#### **什么是jsonp**
 
 > JSONP(JSON with Padding)是JSON的一种“使用模式”，可用于解决主流浏览器的跨域数据访问的问题
 
-####为什么要用jsonp
+#### 为什么要用jsonp
 由于同源策略，一般来说位于server1.example.com的网页无法与不是server1.example.com的服务器沟通，而 HTML 的<script> 元素是一个例外。
 
-####**jsonp的原理**
+#### **jsonp的原理**
 
 > jsonp的核心则是动态添加<script>标签来调用服务器提供的js脚本，允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了,eg:
 
@@ -313,12 +313,12 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
     
 
     
-####**node的express**
-####**Express概述**
+#### **node的express**
+#### **Express概述**
 
 > Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站
 
-####**Express原理**
+#### **Express原理**
 [Express框架][15]建立在node.js内置的http模块上，等于在http模块之上，加了一个中间件处理HTTP请求的函数，向响应头里添加一些东西，干掉同源策略，eg：
 
     var app = express()
@@ -365,7 +365,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
     }
 
 
-##**本地存储搜索历史**
+## **本地存储搜索历史**
 1.安装依赖good-storage
 2.
 
@@ -428,7 +428,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
       return []
     }
     
-##**关闭移动端的点击延迟3秒**
+## **关闭移动端的点击延迟3秒**
 
     //在main.js引入fastclick实现
     import Vue from 'vue'
@@ -454,7 +454,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
       render: h => h(App)
     })
     
-##**图片懒加载**
+## **图片懒加载**
   
 
      //在main.js引入VueLazyload实现,并注册
@@ -481,7 +481,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
           render: h => h(App)
         })
         
-##**lyric-parser解析歌词**
+## **lyric-parser解析歌词**
 1.npm install lyric-parser
 2.用法
 
@@ -513,7 +513,7 @@ better-scroll 是一款重点解决移动端各种滚动场景需求的插件，
     //切换播放/暂停状态
     toggelePlay()
         
-##个人体会
+## 个人体会
 在这个项目中，体会很深的有以下几点
 
  1. 运用vuex，进行便捷的组件通信
