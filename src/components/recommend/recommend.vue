@@ -11,6 +11,10 @@
             </div>
           </slider>
         </div>
+        <div class="myList">
+          <h1 class="myList-title">我的歌单</h1>
+          <my-list></my-list>
+        </div>
         <div class="recommend-list">
         	<h1 class="list-title">热门歌单推荐</h1>
         	<ul>
@@ -42,6 +46,7 @@
   import Loading from 'base/loading/loading'
   import {playlistMixin} from 'common/js/mixin'
   import {mapMutations} from 'vuex'
+  import myList from 'components/my-list/my-list'
 
   export default {
     mixins: [playlistMixin],
@@ -94,7 +99,8 @@
     components: {
       Slider,
       Scroll,
-      Loading
+      Loading,
+      myList
     }
   }
 </script>
@@ -114,6 +120,13 @@
         position: relative
         width: 100%
         overflow: hidden
+      .myList
+        .myList-title
+          height: 65px
+          line-height: 65px
+          text-align: center
+          font-size: $font-size-medium
+          color: $color-theme
       .recommend-list
         .list-title
           height: 65px
