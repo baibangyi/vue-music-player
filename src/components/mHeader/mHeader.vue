@@ -1,15 +1,22 @@
 <template>
   <div class="m-header">
+    <img class="meun" src="./menu.png"/>
     <div class="icon"></div>
     <h1 class="text">Chicken Music</h1>
     <router-link tag="div" class="mine" to="/user">
       <i class="icon-mine"></i>
     </router-link>
+    <left-menu></left-menu>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+  import LeftMenu from 'components/menu/menu'
+  export default {
+    components: {
+      LeftMenu
+    }
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
@@ -22,6 +29,12 @@
     text-align: center
     color: $color-theme
     font-size: 0
+    .meun
+      position:absolute
+      top: 10px
+      left: 10px
+      width: 24px
+      height: 24px
     .icon
       display: inline-block
       vertical-align: top
