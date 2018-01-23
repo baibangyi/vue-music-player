@@ -1,18 +1,23 @@
 <template>
   <div class="m-header">
-    <img class="meun" src="./menu.png"/>
+    <img class="meun" src="./menu.png" @click="showMenu"/>
     <div class="icon"></div>
     <h1 class="text">Chicken Music</h1>
     <router-link tag="div" class="mine" to="/user">
       <i class="icon-mine"></i>
     </router-link>
-    <left-menu></left-menu>
+    <left-menu ref="menuList"></left-menu>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import LeftMenu from 'components/menu/menu'
   export default {
+    methods: {
+      showMenu() {
+        this.$refs.menuList.show()
+      }
+    },
     components: {
       LeftMenu
     }
