@@ -1,13 +1,13 @@
 <template>
   <transition name="list-fade">
-    <div class="mask" @click="hide" v-if="showFlag">
+    <div class="mask" @click.stop="hide" v-if="showFlag">
       <div class="left-menu" ref="MenuL" @click.stop>
         <div class="userInfo">
           <p class="userImg"></p>
           <span class="username">小白菜</span>
         </div>
          <div class="optionsList">
-          <ul>
+          <ul @click.stop.prevent="hover" class='options'>
             <li>个性装扮</li>
             <li>会员中心</li>
             <li>消息中心</li>
@@ -27,7 +27,8 @@
   export default {
     data() {
       return {
-        showFlag: false
+        showFlag: false,
+        activeName: ''
       }
     },
     methods: {
@@ -36,6 +37,19 @@
       },
       hide() {
         this.showFlag = false
+      },
+      hover() {
+        var ev = ev || window.event
+        var target = ev.target || ev.srcElement
+        var aLi = document.getElementsByClassName('options')[0].getElementsByTagName('li')
+        for (var i = 0; i < aLi.length; i++) {
+          if (aLi[i].getAttribute('class') === 'hoverLi') {
+            aLi[i].style.background = '#e5ecf4'
+          }
+        }
+        if (target.nodeName.toLowerCase() === 'li') {
+          target.classList.add('hoverLi')
+        }
       }
     }
   }
@@ -52,18 +66,6 @@
     z-index: 200
     width: 100%
     height: 667px
-    &.list-fade-enter-active, &.list-fade-leave-active
-      transition: opacity 0.3s
-      .mask
-        transition: all 0.3s
-    &.list-fade-enter, &.list-fade-leave-to
-      opacity: 0
-      .mask
-        transform: translateX(-100%)
-    &.list-fade-leave, &.list-fade-enter-to
-      opacity: 1
-      .mask
-        transform: translateX(100%)
     .left-menu
       width: 80%
       max-width: 375px
@@ -90,12 +92,17 @@
           color: #525a64
           font-weight: bold
       .optionsList
+        width: 100%
         ul
+          width: 100%
           li
             width: 100%
+            box-sizing: border-box
             vertical-align: center
             font-size: 18px
             color: #081d35
             padding: 14px 0 14px 30px
             text-align: left
+          .hoverLi
+            background: #ffffff
 </style>

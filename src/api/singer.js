@@ -35,3 +35,22 @@ export function getSingerDetail(singerId) {
 
   return jsonp(url, data, options)
 }
+
+// export function getClassSingerList() {
+//   const url = 'https://c.y.qq.com/v8/fcg-bin/v8.fcg'
+
+//   const data = Object.assign({}, commonParams, {
+//     channel: singer,
+//     page: 'list',
+//     key: 'k_man_all',
+//     pagesize: 100,
+//     pagenum: 1,
+//     g_tk: 5381,
+//     jsonpCallback: GetSingerListCallback,
+//     loginUin: 0,
+//     hostUin: 0,
+//     notice: 0,
+//     platform: 'yqq',
+//     needNewCode: 0
+//   })
+// }
